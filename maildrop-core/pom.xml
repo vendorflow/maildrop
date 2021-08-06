@@ -10,9 +10,19 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>maildrop-api</artifactId>
+    <artifactId>maildrop-core</artifactId>
 
     <dependencies>
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>jakarta.mail</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+            <optional>true</optional>
+        </dependency>
+
         <dependency>
             <groupId>io.vavr</groupId>
             <artifactId>vavr</artifactId>
