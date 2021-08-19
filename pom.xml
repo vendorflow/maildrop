@@ -36,16 +36,20 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <java.version>11</java.version>
+        <maven.compiler.release>11</maven.compiler.release>
+        <lombok.version>1.18.20</lombok.version>
 
         <jakarta-mail.version>2.0.1</jakarta-mail.version>
+        <jakarta-validation.version>2.0.2</jakarta-validation.version>
+
         <groovy3.version>3.0.8</groovy3.version>
         <spock.version>2.0-M4-groovy-3.0</spock.version>
     </properties>
 
     <modules>
-        <module>maildrop-api</module>
+        <module>maildrop-core</module>
         <module>maildrop-test</module>
+        <module>maildrop-spring-boot-starter</module>
     </modules>
 
     <dependencyManagement>
@@ -55,17 +59,28 @@
                 <artifactId>jakarta.mail</artifactId>
                 <version>${jakarta-mail.version}</version>
             </dependency>
+            <dependency>
+                <groupId>jakarta.validation</groupId>
+                <artifactId>jakarta.validation-api</artifactId>
+                <version>${jakarta-validation.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>1.18.20</version>
+                <version>${lombok.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter</artifactId>
                 <version>5.7.2</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>3.20.2</version>
             </dependency>
 
             <dependency>
@@ -83,8 +98,14 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <!-- This stanza is required because Lombok isn't autodetected with JPMS -->
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
 
@@ -116,6 +137,12 @@
 
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.0.0-M5</version>
+                </plugin>
+
                 <!-- prevent m2eclipse warning about the enforcer plugin -->
                 <plugin>
                     <groupId>org.eclipse.m2e</groupId>
@@ -203,11 +230,7 @@
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
-            <url>https://s1.oss.sonatype.org/content/repositories/snapshots</url>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
-        <repository>
-            <id>ossrh-staging</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
     </distributionManagement>
 </project>

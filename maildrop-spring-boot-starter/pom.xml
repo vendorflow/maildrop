@@ -10,13 +10,30 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>maildrop-api</artifactId>
+    <artifactId>maildrop-spring-boot-starter</artifactId>
+
+    <properties>
+        <spring-boot.version>2.5.1</spring-boot.version>
+    </properties>
 
     <dependencies>
         <dependency>
-            <groupId>io.vavr</groupId>
-            <artifactId>vavr</artifactId>
-            <version>0.10.3</version>
+            <groupId>co.vendorflow.oss.maildrop</groupId>
+            <artifactId>maildrop-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>co.vendorflow.oss.maildrop</groupId>
+            <artifactId>maildrop-test</artifactId>
+            <version>${project.version}</version>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+            <version>${spring-boot.version}</version>
         </dependency>
 
         <dependency>
@@ -28,6 +45,12 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-test</artifactId>
+            <version>${spring-boot.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
