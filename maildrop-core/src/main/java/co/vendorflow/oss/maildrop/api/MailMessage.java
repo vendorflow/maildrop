@@ -25,6 +25,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import jakarta.mail.internet.InternetAddress;
 
 /**
@@ -32,6 +34,7 @@ import jakarta.mail.internet.InternetAddress;
  *
  * @author Christopher Smith
  */
+@JsonPropertyOrder({ "templateName", "from", "replyTo", "substitutions", "handlingOptions", "metadata", "recipients" })
 public interface MailMessage {
     /**
      * What template to use to build the body of this message.
