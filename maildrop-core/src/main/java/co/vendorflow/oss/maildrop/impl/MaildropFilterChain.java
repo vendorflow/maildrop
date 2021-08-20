@@ -16,11 +16,14 @@
 
 package co.vendorflow.oss.maildrop.impl;
 
+import static java.lang.System.identityHashCode;
+import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import co.vendorflow.oss.maildrop.api.MailMessage;
 import co.vendorflow.oss.maildrop.api.filter.MaildropFilter;
@@ -59,5 +62,16 @@ public class MaildropFilterChain implements MaildropFilter {
                     .collect(toList());
         }
         return current;
+    }
+
+
+    @Override
+    public String toString() {
+        return new StringBuilder("MaildropFilterChain@")
+                .append(Integer.toHexString(identityHashCode(this)))
+                .append('[')
+                .append(filters.stream().map(Object::getClass).map(Class::getSimpleName).collect(joining(", ")))
+                .append(']')
+                .toString();
     }
 }

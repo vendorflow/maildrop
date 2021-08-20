@@ -44,8 +44,6 @@ public class MailMessageSerializationTests {
 
         var json = JACKSON.writeValueAsString(original);
 
-        System.err.println(json);
-
         var deserialized = JACKSON.readValue(json, MutableMailMessage.class);
 
         assertThat(Instant.parse((String) deserialized.getHandlingOptions().get("deliveryTime")).getEpochSecond())

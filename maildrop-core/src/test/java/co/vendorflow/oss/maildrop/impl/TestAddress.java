@@ -35,7 +35,7 @@ class TestAddress {
             BOB = new InternetAddress("bob@sender.test", "Bob Brown");
             CUSTOMER_SERVICE = new InternetAddress("inbox@sender.test", "Customer Service");
 
-            RENEE = Recipient.to(new InternetAddress("renee@recipient.test"), emptyMap(), emptyMap());
+            RENEE = Recipient.to(new InternetAddress("renee@recipient.test"), emptyMap());
         } catch (UnsupportedEncodingException | AddressException e) {
             throw new Error(e); // because, seriously
         }

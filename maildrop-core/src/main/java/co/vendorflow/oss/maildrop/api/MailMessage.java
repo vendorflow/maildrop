@@ -56,7 +56,9 @@ public interface MailMessage {
      * or {@code null} if there is no Reply-To address.
      */
     @Email
-    InternetAddress getReplyTo();
+    default InternetAddress getReplyTo() {
+        return null;
+    }
 
 
     /**

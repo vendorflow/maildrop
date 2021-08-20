@@ -14,16 +14,21 @@
  * limitations under the License.
  */
 
-package co.vendorflow.oss.maildrop.api;
+package co.vendorflow.oss.maildrop.api.sink;
+
+import co.vendorflow.oss.maildrop.api.MaildropException;
 
 /**
- * Delivery implementation, responsible for handling the mail after any
- * processing that happens in the application. This sink may not be the
- * final delivery mechanism; for example, it might put the message into
- * message queue for SMTP transmission asynchronously.
+ * Represents some problem identified while delivering a message.
  *
  * @author Christopher Smith
  */
-public interface MailSink {
-    MailStatus deliver(MailMessage message) throws MaildropException;
+public class MaildropDeliveryException extends MaildropException {
+    public MaildropDeliveryException(String message) {
+        super(message);
+    }
+
+    public MaildropDeliveryException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }

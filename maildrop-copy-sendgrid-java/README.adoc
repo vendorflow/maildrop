@@ -1,0 +1,23 @@
+= Copy of SendGrid SDK
+
+The SendGrid Java SDK is incompatible with JPMS, and SendGrid [has closed
+a request for support dating back three
+years](https://github.com/sendgrid/sendgrid-java/issues/440). This is a
+near-verbatim copy of the Java code of `sendgrid-java:4.7.4` and
+`java-http-client:4.3.7` merged into a single JPMS module covering
+`com.sendgrid`.
+
+This copy is not shaded because Spring Boot includes out-of-the-box support
+for configuring SendGrid connectivity, and that support is based on FQCNs
+in the original namespace.
+
+== Modifications
+
+The only modifications performed were:
+
+- rewriting the POM
+- defining a `module-info.java`
+- deleting the test class `TestRequiredFilesExist` (the files are important to
+SendGrid's internal processes but were not retained)
+- deleting the kitchen-sink test class `SendGridTest` (the tests are performed
+using a real API key against a live SendGrid server)

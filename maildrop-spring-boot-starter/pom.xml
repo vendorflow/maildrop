@@ -7,7 +7,7 @@
     <parent>
         <groupId>co.vendorflow.oss.maildrop</groupId>
         <artifactId>maildrop-parent</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.1.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>maildrop-spring-boot-starter</artifactId>
@@ -26,6 +26,13 @@
         <dependency>
             <groupId>co.vendorflow.oss.maildrop</groupId>
             <artifactId>maildrop-test</artifactId>
+            <version>${project.version}</version>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>co.vendorflow.oss.maildrop</groupId>
+            <artifactId>maildrop-sink-sendgrid</artifactId>
             <version>${project.version}</version>
             <optional>true</optional>
         </dependency>

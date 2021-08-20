@@ -52,14 +52,6 @@ public class Recipient {
     @NotNull
     private InternetAddress address;
 
-    /**
-     * Values to be substituted into the template that are specific to this recipient.
-     * These values will be merged with any substitutions listed at the message level,
-     * with recipient-specific substitutions taking precedence.
-     */
-    @NotNull
-    private Map<String, Object> substitutions = new HashMap<>();
-
 
     /**
      * Instructions for the handling of the message to this specific recipient,
@@ -81,7 +73,7 @@ public class Recipient {
 
 
     public Recipient copy() {
-        return build(destination, address, substitutions, metadata, handlingOptions);
+        return build(destination, address, metadata, handlingOptions);
     }
 
 
@@ -92,30 +84,28 @@ public class Recipient {
     }
 
 
-    public static Recipient to(InternetAddress address, Map<String, ?> substitutions, Map<String, ?> metadata) {
-        return build(Destination.TO, address, substitutions, metadata, emptyMap());
+    public static Recipient to(InternetAddress address, Map<String, ?> metadata) {
+        return build(Destination.TO, address, metadata, emptyMap());
     }
 
-    public static Recipient cc(InternetAddress address, Map<String, ?> substitutions, Map<String, ?> metadata) {
-        return build(Destination.CC, address, substitutions, metadata, emptyMap());
+    public static Recipient cc(InternetAddress address, Map<String, ?> metadata) {
+        return build(Destination.CC, address, metadata, emptyMap());
     }
 
-    public static Recipient bcc(InternetAddress address, Map<String, ?> substitutions, Map<String, ?> metadata) {
-        return build(Destination.BCC, address, substitutions, metadata, emptyMap());
+    public static Recipient bcc(InternetAddress address, Map<String, ?> metadata) {
+        return build(Destination.BCC, address, metadata, emptyMap());
     }
 
 
     private static Recipient build(
             Destination destination,
             InternetAddress address,
-            Map<String, ?> substitutions,
             Map<String, ?> metadata,
             Map<String, ?> handlingOptions
     ) {
         var r = new Recipient();
         r.setDestination(destination);
         r.setAddress(address);
-        r.setSubstitutions(new HashMap<>(substitutions));
         r.setMetadata(new HashMap<>(metadata));
         r.setHandlingOptions(new HashMap<>(handlingOptions));
         return r;

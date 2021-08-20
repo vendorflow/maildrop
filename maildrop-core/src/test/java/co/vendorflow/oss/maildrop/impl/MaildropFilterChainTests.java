@@ -110,7 +110,7 @@ public class MaildropFilterChainTests {
         @Override
         protected void mutate(MutableMailMessage mutable) {
             if (mutable.getRecipients().stream().noneMatch(r -> r.getAddress().equals(BOB))) {
-                mutable.getRecipients().add(Recipient.cc(BOB, emptyMap(), emptyMap()));
+                mutable.getRecipients().add(Recipient.cc(BOB, emptyMap()));
             }
         }
     }
