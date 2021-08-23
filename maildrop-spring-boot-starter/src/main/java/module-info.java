@@ -9,4 +9,7 @@ module co.vendorflow.oss.maildrop.test.autoconfigure {
     requires spring.context;
     requires spring.boot;
     requires spring.boot.autoconfigure;
+
+    requires static lombok;
+    requires static java.validation;
 }

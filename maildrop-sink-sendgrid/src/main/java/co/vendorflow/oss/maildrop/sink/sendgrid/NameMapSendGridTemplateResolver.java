@@ -1,5 +1,7 @@
 package co.vendorflow.oss.maildrop.sink.sendgrid;
 
+import static java.lang.System.identityHashCode;
+
 import java.util.Map;
 
 import co.vendorflow.oss.maildrop.api.MailMessage;
@@ -21,4 +23,14 @@ public class NameMapSendGridTemplateResolver implements SendGridTemplateResolver
         log.debug("resolved {} -> {}", message.getTemplateName(), id);
         return id;
     }
+
+    @Override
+    public String toString() {
+        return new StringBuilder("NameMapSendGridTemplateResolver@")
+                .append(Integer.toHexString(identityHashCode(this)))
+                .append('[')
+                .append(nameToId.size()).append(" mappings]")
+                .toString();
+    }
+
 }
