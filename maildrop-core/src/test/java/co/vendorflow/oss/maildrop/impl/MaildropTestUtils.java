@@ -22,7 +22,6 @@ import static java.time.Instant.now;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
 import static org.apache.commons.lang3.RandomUtils.nextDouble;
-import static org.apache.commons.lang3.RandomUtils.nextInt;
 
 import java.time.Instant;
 import java.util.Collection;
@@ -74,10 +73,6 @@ public class MaildropTestUtils {
 
             String strShared = randomAlphabetic(8);
             Double numShared = nextDouble(0.0, 1.0);
-            String strTo = randomAlphabetic(8);
-            Integer numTo = nextInt(0, 101);
-            String strCc = randomAlphabetic(8);
-            Integer numCc = nextInt(0, 101);
 
             List<String> metaVals = List.of(randomAlphanumeric(6), randomAlphanumeric(3));
 
@@ -119,8 +114,8 @@ public class MaildropTestUtils {
                 @Override
                 public @NotEmpty Collection<Recipient> getRecipients() {
                     return List.of(
-                            to(to, Map.of("str", strTo, "num", numTo), Map.of("kind", "to")),
-                            cc(cc, Map.of("str", strCc, "num", numCc), Map.of("kind", "cc"))
+                            to(to, Map.of("kind", "to")),
+                            cc(cc, Map.of("kind", "cc"))
                     );
                 }
 

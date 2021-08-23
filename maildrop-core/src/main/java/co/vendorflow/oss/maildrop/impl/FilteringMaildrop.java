@@ -23,10 +23,10 @@ import static lombok.AccessLevel.PRIVATE;
 import java.util.Map;
 
 import co.vendorflow.oss.maildrop.api.MailMessage;
-import co.vendorflow.oss.maildrop.api.MailSink;
 import co.vendorflow.oss.maildrop.api.MailStatus;
 import co.vendorflow.oss.maildrop.api.Maildrop;
 import co.vendorflow.oss.maildrop.api.MaildropException;
+import co.vendorflow.oss.maildrop.api.sink.MailSink;
 import lombok.Builder;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -49,5 +49,14 @@ public class FilteringMaildrop implements Maildrop {
     public Map<MailMessage, MailStatus> enqueue(MailMessage message) throws MaildropException {
         var filtered = filterChain.filter(message);
         return filtered.stream().collect(toMap(identity(), sink::deliver));
+    }
+
+    @Override
+    public String toString() {
+        return new StringBuilder("FilteringMaildrop[")
+                .append(filterChain.getFilters().size()).append(" filter(s), sink: ")
+                .append(sink.getClass().getSimpleName())
+                .append(']')
+                .toString();
     }
 }

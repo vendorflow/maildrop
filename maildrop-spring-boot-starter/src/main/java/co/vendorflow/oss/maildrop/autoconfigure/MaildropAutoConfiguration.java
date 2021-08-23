@@ -9,9 +9,9 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import co.vendorflow.oss.maildrop.api.MailSink;
 import co.vendorflow.oss.maildrop.api.Maildrop;
 import co.vendorflow.oss.maildrop.api.filter.MaildropFilter;
+import co.vendorflow.oss.maildrop.api.sink.MailSink;
 import co.vendorflow.oss.maildrop.impl.FilteringMaildrop;
 import co.vendorflow.oss.maildrop.impl.MaildropFilterChain;
 

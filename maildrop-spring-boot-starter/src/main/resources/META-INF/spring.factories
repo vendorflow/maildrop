@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+	co.vendorflow.oss.maildrop.autoconfigure.MaildropAutoConfiguration,\
+	co.vendorflow.oss.maildrop.autoconfigure.MaildropInMemoryAutoConfiguration,\
+	co.vendorflow.oss.maildrop.autoconfigure.MaildropSendGridAutoConfiguration

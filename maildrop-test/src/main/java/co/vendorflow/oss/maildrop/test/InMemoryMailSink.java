@@ -26,9 +26,9 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 import co.vendorflow.oss.maildrop.api.MailMessage;
-import co.vendorflow.oss.maildrop.api.MailSink;
 import co.vendorflow.oss.maildrop.api.MailStatus;
 import co.vendorflow.oss.maildrop.api.MaildropException;
+import co.vendorflow.oss.maildrop.api.sink.MailSink;
 
 /**
  * An in-memory implementation of {@link MailSink} that places messages into a list.
